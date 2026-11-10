@@ -48,6 +48,6 @@ scrape_configs:
         action: keep
 
   # Métricas de Kubernetes
-  - job_name: 'kube-state-metrics'
+  - job_name: kube-state-metrics
       static_configs:
         - targets: ['kube-state-metrics.devops-portfolio.svc.cluster.local:8080']
