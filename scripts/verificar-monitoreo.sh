@@ -19,7 +19,7 @@ echo "--- Endpoints ---"
 for url in \
     "http://localhost:9090/-/healthy Prometheus" \
     "http://localhost:3000/api/health Grafana" \
-    "http://localhost:9100/metrics Node-Exporter"; do
+    "http://localhost:9090/api/v1/query?query=up Node-Exporter"; do
     TARGET=$(echo $url | awk '{print $1}')
     NAME=$(echo $url | awk '{print $2}')
     CODE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 5 "$TARGET" 2>/dev/null || echo "000")
