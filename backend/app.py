@@ -152,3 +152,8 @@ def delete_note(note_id):
 if __name__ == '__main__':
     init_db()
     app.run(host='0.0.0.0', port=5000)
+
+# Endpoint simulado para pruebas del script (TP12)
+@app.route('/api/v1/login', methods=['POST'])
+def mock_login():
+    return jsonify({"message": "Credenciales inválidas", "status": "unauthorized"}), 401

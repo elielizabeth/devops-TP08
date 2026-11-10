@@ -46,3 +46,8 @@ scrape_configs:
       - source_labels: [container_label_com_docker_compose_project]
         regex: '(?i).*devops-tp08.*'
         action: keep
+
+  # Métricas de Kubernetes
+  - job_name: 'kube-state-metrics'
+      static_configs:
+        - targets: ['kube-state-metrics.devops-portfolio.svc.cluster.local:8080']
