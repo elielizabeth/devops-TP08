@@ -44,8 +44,6 @@ services:
         condition: service_healthy
     networks: [app-network]
     expose: ["5000"]
-    ports:
-      - "5000:5000"
 
   frontend:
     build: ./frontend
@@ -110,8 +108,6 @@ services:
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     networks: [app-network]
     expose: ["9100"]
-    ports:
-      - "9100:9100"
 
   # Métricas de contenedores Docker
   cadvisor:
