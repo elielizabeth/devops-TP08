@@ -13,6 +13,7 @@ global:
 # ── Reglas de alerta ──────────────────────────────────────
 rule_files:
   - "alerts.yml"
+  - "prometheus-alerts-security.yml"
 
 # ── Targets a monitorear (scrape jobs) ───────────────────
 scrape_configs:
@@ -47,4 +48,7 @@ scrape_configs:
         regex: '(?i).*devops-tp08.*'
         action: keep
 
-
+  # Métricas de Kubernetes
+  - job_name: kube-state-metrics
+    static_configs:
+      - targets: ['kube-state-metrics.devops-portfolio.svc.cluster.local:8080']
