@@ -149,11 +149,19 @@ def delete_note(note_id):
     cur.close(); conn.close()
     return jsonify({'message': 'nota eliminada'})
 
-if __name__ == '__main__':
-    init_db()
-    app.run(host='0.0.0.0', port=5000)
-
 # Endpoint simulado para pruebas del script (TP12)
 @app.route('/api/v1/login', methods=['POST'])
 def mock_login():
     return jsonify({"message": "Credenciales inválidas", "status": "unauthorized"}), 401
+
+@app.route('/<path:invalid_path>', methods=['GET', 'POST', 'PUT', 'DELETE'])
+def catch_all(invalid_path):
+    return jsonify({
+        'error': 'Not Found',
+        'path': f'/{invalid_path}',
+        'message': 'Endpoint inexistente'
+    }), 404
+
+if __name__ == '__main__':
+    init_db()
+    app.run(host='0.0.0.0', port=5000)
